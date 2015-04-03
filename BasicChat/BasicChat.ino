@@ -18,14 +18,18 @@
   bool done;
   int bytesRead;
 
+void sendBytes(unsigned int bytes) {
+ while(bytes--) rfWrite('a'); 
+ rfWrite('b');
+}
+
 void setup()
 {
   Serial.begin(115200);  // Start up serial
   Serial1.begin(9600);
   rfBegin(12);  // Initialize ATmega128RFA1 radio on channel 11 (can be 11-26)
   
-  // Send a message to other RF boards on this channel
-  rfPrint("ATmega128RFA1 Dev Board Online!\r\n");
+	sendBytes(127);
 }
 
 
